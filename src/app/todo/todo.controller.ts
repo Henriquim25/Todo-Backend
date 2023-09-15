@@ -11,13 +11,15 @@ import {
   Post,
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
+import { CreateTodoDto } from './dto/create-todo.dto';
+import { UpdateTodoDto } from './dto/update-todo.dto';
 
 @Controller('todos')
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
   @Post()
-  async create(@Body() body) {
+  async create(@Body() body: CreateTodoDto) {
     return this.todoService.create(body);
   }
 
@@ -32,7 +34,10 @@ export class TodoController {
   }
 
   @Patch(':id')
-  async update(@Param('id', ParseUUIDPipe) id: string, @Body() body) {
+  async update(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() body: UpdateTodoDto,
+  ) {
     return this.todoService.update(id, body);
   }
 

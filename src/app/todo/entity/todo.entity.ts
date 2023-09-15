@@ -12,11 +12,11 @@ export class TodoEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'task', type: 'varchar' })
   task: string;
 
-  @Column({ name: 'is_done' })
-  isDone: number;
+  @Column({ name: 'is_done', type: 'boolean', default: 'false' })
+  isDone: boolean;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: string;
